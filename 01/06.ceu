@@ -1,0 +1,6 @@
+var integer posicao;
+loop posicao in [0 -> 50[ do
+    emit GRAPHICS_DRAW_PIXEL(posicao,posicao);
+    await 100ms;
+end
+

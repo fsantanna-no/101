@@ -1,0 +1,31 @@
+code/await Pix (var integer x, var integer y,
+                var integer r, var integer g, var integer b,
+                var integer key_left, var integer key_right,
+                var integer key_up, var integer key_down)
+                    -> FOREVER
+do
+    emit GRAPHICS_SET_RGB(r,g,b);
+    emit GRAPHICS_DRAW_PIXEL(x,y);
+    loop do
+        var integer key = await KEY_PRESS;
+        emit GRAPHICS_SET_RGB(0x00,0x00,0x00);
+        emit GRAPHICS_DRAW_PIXEL(x,y);
+        if key == key_left then
+            x = x - 1;
+        else/if key == key_right then
+            x = x + 1;
+        else/if key == key_up then
+            y = y - 1;
+        else/if key == key_down then
+            y = y + 1;
+        end
+        emit GRAPHICS_SET_RGB(r,g,b);
+        emit GRAPHICS_DRAW_PIXEL(x,y);
+    end
+end
+
+par do
+    await Pix(25,25, 0xFF,0,0, KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN);
+with
+    await Pix(24,24, 0,0xFF,0, KEY_a,KEY_d,KEY_w,KEY_s);
+end

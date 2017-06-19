@@ -1,0 +1,7 @@
+emit GRAPHICS_DRAW_PIXEL(25,25);
+await 1s;
+emit GRAPHICS_DRAW_PIXEL(26,26);
+await 1s;
+emit GRAPHICS_DRAW_PIXEL(27,27);
+await 1s;
+emit GRAPHICS_DRAW_PIXEL(28,28);

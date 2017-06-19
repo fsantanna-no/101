@@ -1,0 +1,9 @@
+var integer posicao = 0;
+loop do
+    emit GRAPHICS_DRAW_PIXEL(posicao,posicao);
+    await 100ms;
+    posicao = posicao + 1;
+    if posicao == 50 then
+        break;
+    end
+end

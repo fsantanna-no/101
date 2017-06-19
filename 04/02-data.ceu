@@ -1,0 +1,52 @@
+data Posicao with
+    var integer x;
+    var integer y;
+end
+
+data Cor with
+    var integer r;
+    var integer g;
+    var integer b;
+end
+
+data Controle with
+    var integer left;
+    var integer right;
+    var integer up;
+    var integer down;
+end
+
+code/await Pix (var Posicao  posicao,
+                var Cor      cor,
+                var Controle controle)
+                    -> FOREVER
+do
+    emit GRAPHICS_SET_RGB(cor.r, cor.g, cor.b);
+    emit GRAPHICS_DRAW_PIXEL(posicao.x, posicao.y);
+    loop do
+        var integer key = await KEY_PRESS;
+        emit GRAPHICS_SET_RGB(0x00,0x00,0x00);
+        emit GRAPHICS_DRAW_PIXEL(posicao.x, posicao.y);
+        if key == controle.left then
+            posicao.x = posicao.x - 1;
+        else/if key == controle.right then
+            posicao.x = posicao.x + 1;
+        else/if key == controle.up then
+            posicao.y = posicao.y - 1;
+        else/if key == controle.down then
+            posicao.y = posicao.y + 1;
+        end
+        emit GRAPHICS_SET_RGB(cor.r, cor.g, cor.b);
+        emit GRAPHICS_DRAW_PIXEL(posicao.x, posicao.y);
+    end
+end
+
+par do
+    await Pix( Posicao(25,25),
+               Cor(0xFF,0x00,0x00),
+               Controle(KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN) );
+with
+    await Pix( Posicao(24,24),
+               Cor(0x00,0xFF,0x00),
+               Controle(KEY_a,KEY_d,KEY_w,KEY_s) );
+end

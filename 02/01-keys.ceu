@@ -1,0 +1,19 @@
+var integer x = 25;
+var integer y = 25;
+emit GRAPHICS_DRAW_PIXEL(x,y);
+
+loop do
+    var integer key = await KEY_PRESS;
+
+    if key == KEY_LEFT then
+        x = x - 1;
+    else/if key == KEY_RIGHT then
+        x = x + 1;
+    else/if key == KEY_UP then
+        y = y - 1;
+    else/if key == KEY_DOWN then
+        y = y + 1;
+    end
+
+    emit GRAPHICS_DRAW_PIXEL(x,y);
+end

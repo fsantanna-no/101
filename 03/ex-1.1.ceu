@@ -1,0 +1,21 @@
+par do 
+   var integer p1 = 0;
+   loop do
+      emit GRAPHICS_DRAW_PIXEL(p1,p1);
+      await 100ms;
+      p1 = p1 + 1;
+      if p1 == 50 then
+         break;
+      end
+   end
+with
+   var integer p2 = 0;
+   loop do
+      emit GRAPHICS_DRAW_PIXEL(49-p2,p2);
+      await 100ms;
+      p2 = p2 + 1;
+      if p2 == 50 then
+         break;
+      end
+   end
+end
