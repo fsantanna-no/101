@@ -4,7 +4,7 @@ emit GRAPHICS_DRAW_PIXEL(x,y);
 
 loop do
     var integer key = await KEY_PRESS;
-    emit GRAPHICS_SET_RGB(0x00,0x00,0x00);
+    emit GRAPHICS_SET_COLOR_RGB(0x00,0x00,0x00);
     emit GRAPHICS_DRAW_PIXEL(x,y);
 
     if key == KEY_LEFT then
@@ -17,6 +17,6 @@ loop do
         y = y + 1;
     end
 
-    emit GRAPHICS_SET_RGB(0xFF,0xFF,0xFF);
+    emit GRAPHICS_SET_COLOR_RGB(0xFF,0xFF,0xFF);
     emit GRAPHICS_DRAW_PIXEL(x,y);
 end

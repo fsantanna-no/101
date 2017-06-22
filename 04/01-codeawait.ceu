@@ -4,11 +4,11 @@ code/await Pix (var integer x, var integer y,
                 var integer key_up, var integer key_down)
                     -> FOREVER
 do
-    emit GRAPHICS_SET_RGB(r,g,b);
+    emit GRAPHICS_SET_COLOR_RGB(r,g,b);
     emit GRAPHICS_DRAW_PIXEL(x,y);
     loop do
         var integer key = await KEY_PRESS;
-        emit GRAPHICS_SET_RGB(0x00,0x00,0x00);
+        emit GRAPHICS_SET_COLOR_RGB(0x00,0x00,0x00);
         emit GRAPHICS_DRAW_PIXEL(x,y);
         if key == key_left then
             x = x - 1;
@@ -19,7 +19,7 @@ do
         else/if key == key_down then
             y = y + 1;
         end
-        emit GRAPHICS_SET_RGB(r,g,b);
+        emit GRAPHICS_SET_COLOR_RGB(r,g,b);
         emit GRAPHICS_DRAW_PIXEL(x,y);
     end
 end

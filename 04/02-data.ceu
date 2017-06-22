@@ -21,11 +21,11 @@ code/await Pix (var Posicao  posicao,
                 var Controle controle)
                     -> FOREVER
 do
-    emit GRAPHICS_SET_RGB(cor.r, cor.g, cor.b);
+    emit GRAPHICS_SET_COLOR_RGB(cor.r, cor.g, cor.b);
     emit GRAPHICS_DRAW_PIXEL(posicao.x, posicao.y);
     loop do
         var integer key = await KEY_PRESS;
-        emit GRAPHICS_SET_RGB(0x00,0x00,0x00);
+        emit GRAPHICS_SET_COLOR_RGB(0x00,0x00,0x00);
         emit GRAPHICS_DRAW_PIXEL(posicao.x, posicao.y);
         if key == controle.left then
             posicao.x = posicao.x - 1;
@@ -36,7 +36,7 @@ do
         else/if key == controle.down then
             posicao.y = posicao.y + 1;
         end
-        emit GRAPHICS_SET_RGB(cor.r, cor.g, cor.b);
+        emit GRAPHICS_SET_COLOR_RGB(cor.r, cor.g, cor.b);
         emit GRAPHICS_DRAW_PIXEL(posicao.x, posicao.y);
     end
 end
